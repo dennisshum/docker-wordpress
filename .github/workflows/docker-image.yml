@@ -21,9 +21,15 @@ jobs:
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       run: |
         docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-    - name: Build the Docker image
+    - name: Build the Wordpress docker image
       run: |
         docker build . --file Dockerfile --tag dennisshum/wordpress
-    - name: Docker push
+    - name: Docker push Wordpress
       run: |
         docker push dennisshum/wordpress
+    - name: Build the MariaDB docker image
+      run: |
+        docker build . --file Dockerfile --tag dennisshum/mariadb
+    - name: Docker push MariaDB
+      run: |
+        docker push dennisshum/mariadb
